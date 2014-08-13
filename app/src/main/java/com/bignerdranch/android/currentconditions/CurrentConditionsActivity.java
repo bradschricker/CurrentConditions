@@ -22,6 +22,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
 
     private SensorManager mSensorManager;
     private Sensor mThermometer;
+    private Sensor mHydrometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
 
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         mThermometer = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        mHydrometer = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
     }
 
@@ -43,6 +45,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         // Register a listener for the sensor.
         super.onResume();
         mSensorManager.registerListener(this, mThermometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mHydrometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -69,16 +72,24 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
     }
 
     public void onSensorChanged(SensorEvent event) {
+        NumberFormat output_format = NumberFormat.getNumberInstance();
+        output_format.setMinimumFractionDigits(2);
+        output_format.setMaximumFractionDigits(2);
 
         if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
             float temperature_celcius = event.values[0];
             float temperature_fahrenheit = temperature_celcius * 9 / 5 + 32.0f;
 
-            NumberFormat temperature_format = NumberFormat.getNumberInstance();
-            temperature_format.setMinimumFractionDigits(2);
-            temperature_format.setMaximumFractionDigits(2);
-            String temperature_output = temperature_format.format(temperature_fahrenheit);
+            String temperature_output = output_format.format(temperature_fahrenheit);
             mTemperatureTextView.setText(temperature_output + (char) 0x00B0 + " F");
+        }
+
+        if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
+            float relative_humidity = event.values[0];
+
+            String relative_humidity_output = output_format.format(relative_humidity);
+            String humidity_label = getResources().getString(R.string.humidity);
+            mHumidityTextView.setText(relative_humidity_output + "% " + humidity_label);
         }
     }
 }

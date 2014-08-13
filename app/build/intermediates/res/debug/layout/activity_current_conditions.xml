@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textSize="24dp"/>
+        android:textSize="18dp"/>
 
     <TextView
         android:id="@+id/pressure_text_view"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:textSize="24dp"/>
+        android:textSize="18dp"/>
 
 </RelativeLayout>
 <!-- From: file:/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/layout/activity_current_conditions.xml -->
