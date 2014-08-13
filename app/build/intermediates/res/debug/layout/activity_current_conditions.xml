@@ -9,14 +9,6 @@
     tools:context=".CurrentConditionsActivity">
 
     <TextView
-        android:id="@+id/time_text_view"
-        android:text="@string/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="20dp"/>
-
-    <TextView
         android:id="@+id/temperature_text_view"
         android:text="@string/temperature"
         android:layout_width="wrap_content"
@@ -30,7 +22,7 @@
         android:text="@string/humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:textSize="18dp"/>
 
     <TextView
@@ -38,7 +30,7 @@
         android:text="@string/pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:textSize="18dp"/>
 

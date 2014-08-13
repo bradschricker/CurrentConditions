@@ -15,7 +15,6 @@ import java.text.NumberFormat;
 
 public class CurrentConditionsActivity extends Activity implements SensorEventListener {
 
-    private TextView mTimeTextView;
     private TextView mTemperatureTextView;
     private TextView mHumidityTextView;
     private TextView mPressureTextView;
@@ -30,7 +29,6 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_conditions);
 
-        mTimeTextView = (TextView) findViewById(R.id.time_text_view);
         mTemperatureTextView = (TextView) findViewById(R.id.temperature_text_view);
         mHumidityTextView = (TextView) findViewById(R.id.humidity_text_view);
         mPressureTextView = (TextView) findViewById(R.id.pressure_text_view);
