@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+
 
 public class CurrentConditionsActivity extends Activity implements SensorEventListener {
 
@@ -67,9 +69,16 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
     }
 
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() != Sensor.TYPE_AMBIENT_TEMPERATURE) return;
 
-        float temperature_celcius = event.values[0];
-        mTemperatureTextView.setText("" + temperature_celcius);
+        if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
+            float temperature_celcius = event.values[0];
+            float temperature_fahrenheit = temperature_celcius * 9 / 5 + 32.0f;
+
+            NumberFormat temperature_format = NumberFormat.getNumberInstance();
+            temperature_format.setMinimumFractionDigits(2);
+            temperature_format.setMaximumFractionDigits(2);
+            String temperature_output = temperature_format.format(temperature_fahrenheit);
+            mTemperatureTextView.setText(temperature_output + (char) 0x00B0 + " F");
+        }
     }
 }
