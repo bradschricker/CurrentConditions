@@ -4,5 +4,9 @@
     <string name="app_name">CurrentConditions</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="time">Time</string>
+    <string name="temperature">Temp</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
 
 </resources>
