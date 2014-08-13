@@ -23,6 +23,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
     private SensorManager mSensorManager;
     private Sensor mThermometer;
     private Sensor mHydrometer;
+    private Sensor mBarometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         mThermometer = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
         mHydrometer = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        mBarometer = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
 
     }
 
@@ -46,6 +48,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         super.onResume();
         mSensorManager.registerListener(this, mThermometer, SensorManager.SENSOR_DELAY_NORMAL);
         mSensorManager.registerListener(this, mHydrometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mBarometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
@@ -90,6 +93,14 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
             String relative_humidity_output = output_format.format(relative_humidity);
             String humidity_label = getResources().getString(R.string.humidity);
             mHumidityTextView.setText(relative_humidity_output + "% " + humidity_label);
+        }
+
+        if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
+            float pressure = event.values[0];
+
+            String pressure_output = output_format.format(pressure);
+            String pressure_label = getResources().getString(R.string.pressure);
+            mPressureTextView.setText(pressure_output + " " + pressure_label);
         }
     }
 }

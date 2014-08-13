@@ -7,6 +7,6 @@
     <string name="time">Time</string>
     <string name="temperature">Temp</string>
     <string name="humidity">Humidity</string>
-    <string name="pressure">Pressure</string>
+    <string name="pressure">mBar</string>
 
 </resources>

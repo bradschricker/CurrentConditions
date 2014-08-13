@@ -13,7 +13,7 @@
     <string name="app_name">CurrentConditions</string>
     <string name="hello_world">Hello world!</string>
     <string name="humidity">Humidity</string>
-    <string name="pressure">Pressure</string>
+    <string name="pressure">mBar</string>
     <string name="temperature">Temp</string>
     <string name="time">Time</string>
     <!-- From: file:/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/values/styles.xml -->
