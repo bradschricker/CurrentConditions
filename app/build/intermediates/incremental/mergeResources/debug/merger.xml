@@ -44,11 +44,19 @@
             <file
                 path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/values/strings.xml"
                 qualifiers="" >
+                <string name="time" >Time
+                </string>
                 <string name="action_settings" >Settings
+                </string>
+                <string name="pressure" >Pressure
                 </string>
                 <string name="app_name" >CurrentConditions
                 </string>
+                <string name="humidity" >Humidity
+                </string>
                 <string name="hello_world" >Hello world!
+                </string>
+                <string name="temperature" >Temp
                 </string>
             </file>
             <file
@@ -57,7 +65,7 @@
 
                 <style
                     name="AppTheme"
-                    parent="android:Theme.Holo.Light.DarkActionBar" >
+                    parent="android:Theme.Holo" >
 
                     <!-- Customize your theme here. -->
                 </style>

@@ -9,9 +9,38 @@
     tools:context=".CurrentConditionsActivity">
 
     <TextView
-        android:text="@string/hello_world"
+        android:id="@+id/time_text_view"
+        android:text="@string/time"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/temperature_text_view"
+        android:text="@string/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="48dp" />
+
+    <TextView
+        android:id="@+id/humidity_text_view"
+        android:text="@string/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textSize="24dp"/>
+
+    <TextView
+        android:id="@+id/pressure_text_view"
+        android:text="@string/pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textSize="24dp"/>
 
 </RelativeLayout>
 <!-- From: file:/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/layout/activity_current_conditions.xml -->
