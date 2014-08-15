@@ -12,12 +12,12 @@ import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 
-public class HumidityGraphActivity extends Activity implements SensorEventListener {
+public class PressureGraphActivity extends Activity implements SensorEventListener {
     private SensorManager mSensorManager;
-    private Sensor mHydrometer;
+    private Sensor mBarometer;
 
     private GraphView mGraphView;
-    private GraphViewSeries mHumiditySeries;
+    private GraphViewSeries mPressureSeries;
     private int mSeriesEntry;
 
     @Override
@@ -26,19 +26,17 @@ public class HumidityGraphActivity extends Activity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_humidity_graph);
 
-        //mHumiditySeries = new GraphViewSeries(new GraphViewData[] {new GraphViewData(0, 50)});
-
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        mHydrometer = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+        mBarometer = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
 
-        mGraphView = new LineGraphView(HumidityGraphActivity.this, getResources().getString(R.string.humidity_graph_title));
+        mGraphView = new LineGraphView(PressureGraphActivity.this, getResources().getString(R.string.pressure_graph_title));
     }
     @Override
     protected void onResume() {
         // Register a listener for the sensor.
         super.onResume();
 
-        mSensorManager.registerListener(this, mHydrometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mBarometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -46,18 +44,18 @@ public class HumidityGraphActivity extends Activity implements SensorEventListen
     }
 
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
-            float relative_humidity = event.values[0];
+        if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
+            float pressure = event.values[0];
 
-            GraphViewData newData = new GraphViewData(mSeriesEntry, relative_humidity);
+            GraphViewData newData = new GraphViewData(mSeriesEntry, pressure);
 
-            if (mHumiditySeries == null) {
-                mHumiditySeries = new GraphViewSeries(new GraphViewData[] {new GraphViewData(0, relative_humidity)});
+            if (mPressureSeries == null) {
+                mPressureSeries = new GraphViewSeries(new GraphViewData[] {new GraphViewData(0, pressure)});
             }
 
-            mHumiditySeries.appendData(newData, false, 100);
+            mPressureSeries.appendData(newData, false, 100);
 
-            mGraphView.addSeries(mHumiditySeries);
+            mGraphView.addSeries(mPressureSeries);
             LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
             layout.removeAllViews();
             layout.addView(mGraphView);

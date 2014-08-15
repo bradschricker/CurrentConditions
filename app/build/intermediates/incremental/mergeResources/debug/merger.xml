@@ -58,6 +58,8 @@
                 </string>
                 <string name="temperature" >Temp
                 </string>
+                <string name="pressure_graph_title" >Pressure (mBar)
+                </string>
             </file>
             <file
                 path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/values/styles.xml"
@@ -89,6 +91,11 @@
             <file
                 name="activity_humidity_graph"
                 path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/layout/activity_humidity_graph.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_pressure_graph"
+                path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/layout/activity_pressure_graph.xml"
                 qualifiers=""
                 type="layout" />
         </source>

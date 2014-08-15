@@ -45,6 +45,13 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
             }
         });
         mPressureTextView = (TextView) findViewById(R.id.pressure_text_view);
+        mPressureTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pressureIntent = new Intent(CurrentConditionsActivity.this, PressureGraphActivity.class);
+                startActivity(pressureIntent);
+            }
+        });
 
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         mThermometer = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
