@@ -23,7 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textSize="18dp"/>
+        android:gravity="center"
+        android:textSize="18dp"
+        android:background="@drawable/humidity_background_oval" />
 
     <TextView
         android:id="@+id/pressure_text_view"
@@ -32,6 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:textSize="18dp"/>
+        android:gravity="center"
+        android:textSize="18dp"
+        android:background="@drawable/pressure_background_oval"/>
 
 </RelativeLayout>

@@ -74,6 +74,21 @@
                 <dimen name="activity_horizontal_margin" >64dp
                 </dimen>
             </file>
+            <file
+                name="humidity_background_oval"
+                path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/drawable/humidity_background_oval.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="pressure_background_oval"
+                path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/drawable/pressure_background_oval.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="activity_humidity_graph"
+                path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/layout/activity_humidity_graph.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/build/generated/res/rs/debug" />
         <source path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/build/generated/res/generated/debug" />

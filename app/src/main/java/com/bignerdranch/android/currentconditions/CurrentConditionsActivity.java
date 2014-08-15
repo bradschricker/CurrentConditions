@@ -1,6 +1,7 @@
 package com.bignerdranch.android.currentconditions;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +10,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -35,6 +37,13 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
 
         mTemperatureTextView = (TextView) findViewById(R.id.temperature_text_view);
         mHumidityTextView = (TextView) findViewById(R.id.humidity_text_view);
+        mHumidityTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent humidityIntent = new Intent(CurrentConditionsActivity.this, HumidityGraphActivity.class);
+                startActivity(humidityIntent);
+            }
+        });
         mPressureTextView = (TextView) findViewById(R.id.pressure_text_view);
 
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
