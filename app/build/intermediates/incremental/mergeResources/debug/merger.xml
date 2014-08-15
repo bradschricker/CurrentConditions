@@ -48,6 +48,8 @@
                 </string>
                 <string name="action_settings" >Settings
                 </string>
+                <string name="temperature_graph_title" >Temperature (° F)
+                </string>
                 <string name="pressure" >mBar
                 </string>
                 <string name="app_name" >CurrentConditions
@@ -96,6 +98,11 @@
             <file
                 name="activity_pressure_graph"
                 path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/layout/activity_pressure_graph.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_temperature_graph"
+                path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/layout/activity_temperature_graph.xml"
                 qualifiers=""
                 type="layout" />
         </source>

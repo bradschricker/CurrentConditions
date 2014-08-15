@@ -18,6 +18,9 @@ import java.util.ArrayList;
 
 
 public class CurrentConditionsActivity extends Activity implements SensorEventListener {
+    private static final String KEY_TEMPERATURE = "temperature";
+    private static final String KEY_HUMIDITY = "humidity";
+    private static final String KEY_PRESSURE = "pressure";
 
     private TextView mTemperatureTextView;
     private TextView mHumidityTextView;
@@ -28,6 +31,12 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
     private Sensor mHydrometer;
     private Sensor mBarometer;
 
+    private float mTemperatureFahrenheit;
+    private float mHumidity;
+    private float mPressure;
+
+    private NumberFormat mOutputFormat;
+
     private ArrayList<TemperatureRGB> mTemperatureRGBList;
 
     @Override
@@ -35,7 +44,18 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_conditions);
 
+        mOutputFormat = NumberFormat.getNumberInstance();
+        mOutputFormat.setMinimumFractionDigits(2);
+        mOutputFormat.setMaximumFractionDigits(2);
+
         mTemperatureTextView = (TextView) findViewById(R.id.temperature_text_view);
+        mTemperatureTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent temperatureIntent = new Intent(CurrentConditionsActivity.this, TemperatureGraphActivity.class);
+                startActivity(temperatureIntent);
+            }
+        });
         mHumidityTextView = (TextView) findViewById(R.id.humidity_text_view);
         mHumidityTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +80,28 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
 
         mTemperatureRGBList = new ArrayList<TemperatureRGB>();
         initializeTemperatureMap();
+
+        if (savedInstanceState != null) {
+            mTemperatureFahrenheit = savedInstanceState.getFloat(KEY_TEMPERATURE, 0);
+            String temperature_output = mOutputFormat.format(mTemperatureFahrenheit);
+            mTemperatureTextView.setText(temperature_output + (char) 0x00B0 + " F");
+            int temperatureItem = getTemperatureRGBItem(mTemperatureFahrenheit);
+            int red = mTemperatureRGBList.get(temperatureItem).getRed();
+            int green = mTemperatureRGBList.get(temperatureItem).getGreen();
+            int blue = mTemperatureRGBList.get(temperatureItem).getBlue();
+
+            getWindow().getDecorView().setBackgroundColor(Color.rgb(red, green, blue));
+
+            mHumidity = savedInstanceState.getFloat(KEY_HUMIDITY, 0);
+            String relative_humidity_output = mOutputFormat.format(mHumidity);
+            String humidity_label = getResources().getString(R.string.humidity);
+            mHumidityTextView.setText(relative_humidity_output + "% " + humidity_label);
+
+            mPressure = savedInstanceState.getFloat(KEY_PRESSURE, 0);
+            String pressure_output = mOutputFormat.format(mPressure);
+            String pressure_label = getResources().getString(R.string.pressure);
+            mPressureTextView.setText(pressure_output + " " + pressure_label);
+        }
 
     }
 
@@ -91,23 +133,27 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSaveInstanceState (Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putFloat(KEY_TEMPERATURE, mTemperatureFahrenheit);
+        savedInstanceState.putFloat(KEY_HUMIDITY, mHumidity);
+        savedInstanceState.putFloat(KEY_PRESSURE, mPressure);
+    }
+
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         //  Do something if the accuracy changes
     }
 
     public void onSensorChanged(SensorEvent event) {
-        NumberFormat output_format = NumberFormat.getNumberInstance();
-        output_format.setMinimumFractionDigits(2);
-        output_format.setMaximumFractionDigits(2);
-
         if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
             float temperature_celcius = event.values[0];
-            float temperature_fahrenheit = temperature_celcius * 9 / 5 + 32.0f;
+            mTemperatureFahrenheit = temperature_celcius * 9 / 5 + 32.0f;
 
-            String temperature_output = output_format.format(temperature_fahrenheit);
+            String temperature_output = mOutputFormat.format(mTemperatureFahrenheit);
             mTemperatureTextView.setText(temperature_output + (char) 0x00B0 + " F");
 
-            int temperatureItem = getTemperatureRGBItem(temperature_fahrenheit);
+            int temperatureItem = getTemperatureRGBItem(mTemperatureFahrenheit);
             int red = mTemperatureRGBList.get(temperatureItem).getRed();
             int green = mTemperatureRGBList.get(temperatureItem).getGreen();
             int blue = mTemperatureRGBList.get(temperatureItem).getBlue();
@@ -116,17 +162,17 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         }
 
         if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
-            float relative_humidity = event.values[0];
+            mHumidity = event.values[0];
 
-            String relative_humidity_output = output_format.format(relative_humidity);
+            String relative_humidity_output = mOutputFormat.format(mHumidity);
             String humidity_label = getResources().getString(R.string.humidity);
             mHumidityTextView.setText(relative_humidity_output + "% " + humidity_label);
         }
 
         if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
-            float pressure = event.values[0];
+            mPressure = event.values[0];
 
-            String pressure_output = output_format.format(pressure);
+            String pressure_output = mOutputFormat.format(mPressure);
             String pressure_label = getResources().getString(R.string.pressure);
             mPressureTextView.setText(pressure_output + " " + pressure_label);
         }

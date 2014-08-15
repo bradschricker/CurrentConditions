@@ -17,6 +17,7 @@
     <string name="pressure">mBar</string>
     <string name="pressure_graph_title">Pressure (mBar)</string>
     <string name="temperature">Temp</string>
+    <string name="temperature_graph_title">Temperature (° F)</string>
     <!-- From: file:/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/values/styles.xml -->
     <eat-comment />
 

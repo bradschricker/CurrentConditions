@@ -9,5 +9,6 @@
     <string name="pressure">mBar</string>
     <string name="humidity_graph_title">Humidity (%)</string>
     <string name="pressure_graph_title">Pressure (mBar)</string>
+    <string name="temperature_graph_title">Temperature (&#xb0; F)</string>
 
 </resources>

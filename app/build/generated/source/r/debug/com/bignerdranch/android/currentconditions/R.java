@@ -30,6 +30,7 @@ public final class R {
         public static final int activity_current_conditions=0x7f030000;
         public static final int activity_humidity_graph=0x7f030001;
         public static final int activity_pressure_graph=0x7f030002;
+        public static final int activity_temperature_graph=0x7f030003;
     }
     public static final class menu {
         public static final int current_conditions=0x7f070000;
@@ -43,6 +44,7 @@ public final class R {
         public static final int pressure=0x7f050005;
         public static final int pressure_graph_title=0x7f050006;
         public static final int temperature=0x7f050007;
+        public static final int temperature_graph_title=0x7f050008;
     }
     public static final class style {
         /**  Customize your theme here. 
