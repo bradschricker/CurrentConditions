@@ -44,6 +44,8 @@
             <file
                 path="/Users/localadmin/Documents/Workspace/CurrentConditions/app/src/main/res/values/strings.xml"
                 qualifiers="" >
+                <string name="humidity_graph_title" >Humidity (%)
+                </string>
                 <string name="action_settings" >Settings
                 </string>
                 <string name="pressure" >mBar

@@ -7,5 +7,6 @@
     <string name="temperature">Temp</string>
     <string name="humidity">Humidity</string>
     <string name="pressure">mBar</string>
+    <string name="humidity_graph_title">Humidity (%)</string>
 
 </resources>

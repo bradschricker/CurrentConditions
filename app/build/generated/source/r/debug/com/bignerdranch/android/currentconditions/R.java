@@ -38,8 +38,9 @@ public final class R {
         public static final int app_name=0x7f050001;
         public static final int hello_world=0x7f050002;
         public static final int humidity=0x7f050003;
-        public static final int pressure=0x7f050004;
-        public static final int temperature=0x7f050005;
+        public static final int humidity_graph_title=0x7f050004;
+        public static final int pressure=0x7f050005;
+        public static final int temperature=0x7f050006;
     }
     public static final class style {
         /**  Customize your theme here. 
