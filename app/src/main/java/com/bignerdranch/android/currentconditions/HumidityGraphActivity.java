@@ -7,17 +7,11 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
 
 public class HumidityGraphActivity extends Activity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mHydrometer;
 
-    private GraphView mGraphView;
-    private GraphViewSeries mHumiditySeries;
     private int mSeriesEntry;
 
     @Override
@@ -31,7 +25,6 @@ public class HumidityGraphActivity extends Activity implements SensorEventListen
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         mHydrometer = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
-        mGraphView = new LineGraphView(HumidityGraphActivity.this, getResources().getString(R.string.humidity_graph_title));
     }
     @Override
     protected void onResume() {
@@ -49,19 +42,6 @@ public class HumidityGraphActivity extends Activity implements SensorEventListen
         if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
             float relative_humidity = event.values[0];
 
-            GraphViewData newData = new GraphViewData(mSeriesEntry, relative_humidity);
-
-            if (mHumiditySeries == null) {
-                mHumiditySeries = new GraphViewSeries(new GraphViewData[] {new GraphViewData(0, relative_humidity)});
-            }
-
-            mHumiditySeries.appendData(newData, false, 100);
-
-            mGraphView.addSeries(mHumiditySeries);
-            LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
-            layout.removeAllViews();
-            layout.addView(mGraphView);
-            mSeriesEntry++;
         }
     }
 
