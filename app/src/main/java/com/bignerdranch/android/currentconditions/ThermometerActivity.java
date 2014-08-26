@@ -8,7 +8,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-public class TemperatureGraphActivity extends Activity implements SensorEventListener {
+public class ThermometerActivity extends Activity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mThermometer;
 

@@ -52,7 +52,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         mTemperatureTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent temperatureIntent = new Intent(CurrentConditionsActivity.this, TemperatureGraphActivity.class);
+                Intent temperatureIntent = new Intent(CurrentConditionsActivity.this, ThermometerActivity.class);
                 startActivity(temperatureIntent);
             }
         });
@@ -60,7 +60,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         mHumidityTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent humidityIntent = new Intent(CurrentConditionsActivity.this, HumidityGraphActivity.class);
+                Intent humidityIntent = new Intent(CurrentConditionsActivity.this, HydrometerActivity.class);
                 startActivity(humidityIntent);
             }
         });
@@ -68,7 +68,7 @@ public class CurrentConditionsActivity extends Activity implements SensorEventLi
         mPressureTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent pressureIntent = new Intent(CurrentConditionsActivity.this, PressureGraphActivity.class);
+                Intent pressureIntent = new Intent(CurrentConditionsActivity.this, BarometerActivity.class);
                 startActivity(pressureIntent);
             }
         });
