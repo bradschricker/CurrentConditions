@@ -8,9 +8,9 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-public class HumidityGraphActivity extends Activity implements SensorEventListener {
+public class BarometerActivity extends Activity implements SensorEventListener {
     private SensorManager mSensorManager;
-    private Sensor mHydrometer;
+    private Sensor mBarometer;
 
     private int mSeriesEntry;
 
@@ -20,18 +20,15 @@ public class HumidityGraphActivity extends Activity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_humidity_graph);
 
-        //mHumiditySeries = new GraphViewSeries(new GraphViewData[] {new GraphViewData(0, 50)});
-
         mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-        mHydrometer = mSensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
-
+        mBarometer = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
     }
     @Override
     protected void onResume() {
         // Register a listener for the sensor.
         super.onResume();
 
-        mSensorManager.registerListener(this, mHydrometer, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mBarometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -39,9 +36,8 @@ public class HumidityGraphActivity extends Activity implements SensorEventListen
     }
 
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
-            float relative_humidity = event.values[0];
-
+        if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
+            float pressure = event.values[0];
         }
     }
 
